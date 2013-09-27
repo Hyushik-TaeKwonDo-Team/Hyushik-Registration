@@ -35,7 +35,7 @@ public class HyushikRegistrationTest{
     public void openBrowser() {
         FileInputStream fizban;
         try{
-            fizban = new FileInputStream("targetserver.properties");
+            fizban = new FileInputStream("webserver.properties");
         }catch(Exception e){
             return;
         }
