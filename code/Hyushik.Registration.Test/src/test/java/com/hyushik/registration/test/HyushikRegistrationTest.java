@@ -58,8 +58,8 @@ public class HyushikRegistrationTest{
     } 
     
     @After
-    public void closeBrowser(){
-        driver.close();
+    public void closeBrowserWindows(){
+        driver.quit();
     }
     
     
