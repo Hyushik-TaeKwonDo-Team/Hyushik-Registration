@@ -59,7 +59,7 @@ public class HyushikRegistrationTest{
     
     @After
     public void closeBrowserWindows(){
-        driver.quit();
+        driver.quit(); //DON'T USE "driver.close", it fails in QA
     }
     
     
