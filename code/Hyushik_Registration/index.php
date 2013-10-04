@@ -28,14 +28,14 @@
 			<h5>Tournament Registration</h5>
 			<hr />
 		</div>
-		<form action="">
+		<form action="signup.php" method="post">
 		<div class="one-third column">
 			<h3>Participant Info</h3>
 			
 			  <label for="name">Name *</label>
-			  <input type="text" id="name" />
+			  <input type="text" id="name" name="name" />
 			  <label for="email">Email *</label>
-			  <input type="email" id="email" />
+			  <input type="text" id="email" name="email"/>
 			  <label for="address">Address *</label>
 			  <input type="text" id="address" />
 			  <label for="city">City *</label>
