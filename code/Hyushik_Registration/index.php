@@ -37,27 +37,27 @@
 			  <label for="email">Email *</label>
 			  <input type="text" id="email" name="email"/>
 			  <label for="address">Address *</label>
-			  <input type="text" id="address" />
+			  <input type="text" id="address" name="address" />
 			  <label for="city">City *</label>
-			  <input type="text" id="city" />
+			  <input type="text" id="city" name="city" />
 			  <ul><li>
 			  <label for="state">State *</label>
-			  <input type="text" id="state" class="small" />
+			  <input type="text" id="state" class="small" name="state" />
 			  </li><li>
 			  <label for="zip">Zip Code *</label>
-			  <input type="text" id="zip"class="small" />
+			  <input type="text" id="zip" class="small" name="zip" />
 			  </li></ul>
 			  <label for="phone">Phone *</label>
-			  <input type="text" id="phone" />
+			  <input type="text" id="phone" name="phone" />
 
 			    <fieldset>
 		    <label for="">Gender *</label>
 		    <label for="male">
-		      <input type="radio" name="male" id="male" value="male" />
+		      <input type="radio" name="male" id="male" value="male" name="male" />
 		      <span>Male</span>
 		    </label>
 		    <label for="female">
-		      <input type="radio" name="female" id="female" value="female" />
+		      <input type="radio" name="female" id="female" value="female" name="female" />
 		      <span>Female</span>
 		    </label>
 		  </fieldset>
@@ -67,31 +67,31 @@
 		<div class="one-third column">
 			<h3>School Info</h3>
 			  <label for="instructor">Instructor *</label>
-			  <input type="text" id="instructor" />
+			  <input type="text" id="instructor" name="instructor" />
 			  <label for="schoolname">Martial Arts School *</label>
-			  <input type="text" id="schoolname" />
+			  <input type="text" id="schoolname" name="schoolname" />
 			  <label for="schooladdress">School Address</label>
-			  <input type="text" id="schooladdress" />
+			  <input type="text" id="schooladdress" name="schooladdress" />
 			  <label for="schoolcity">City</label>
-			  <input type="text" id="schoolcity" />
+			  <input type="text" id="schoolcity" name="schoolcity" />
 			  <ul><li>
 			  <label for="schoolstate">State</label>
-			  <input type="text" id="schoolstate" class="small" />
+			  <input type="text" id="schoolstate" class="small" name="schoolstate" />
 			  </li><li>
 			  <label for="schoolzip">Zip Code</label>
-			  <input type="text" id="schoolzip"class="small" />
+			  <input type="text" id="schoolzip"class="small" name="schoolzip" />
 			  </li></ul>
 			  <label for="schoolphone">Phone</label>
-			  <input type="text" id="schoolphone" />
+			  <input type="text" id="schoolphone" name="schoolphone" />
 			  <label for="schoolemail">Email</label>
-			  <input type="text" id="schoolemail" />
+			  <input type="text" id="schoolemail" name="schoolemail" />
 		</div>
 
 		<div class="one-third column">
 			<h3>Ranking / Events</h3>
 
 			  <label for="rank">Rank *</label>
-			  <select id="rank">
+			  <select id="rank" name="rank">
 			    <option value="White">White</option>
 			    <option value="Yellow/Orange">Yellow/Orange</option>
 			    <option value="Green">Green</option>
@@ -102,39 +102,39 @@
 			 
 			  <ul><li>
 			  <label for="age">Age *</label>
-			  <input type="text" id="age" class="small" />
+			  <input type="text" id="age" class="small" name="age" />
 			  </li><li> 
 			  <label for="weight">Weight (lbs) *</label>
-			  <input type="text" id="weight" class="small" />
+			  <input type="text" id="weight" class="small" name="weight" />
 			  </li>
 			  </ul>	 
 			 
 			  <fieldset>
 			    <label for="">Events *</label>
 			    <label for="Weapons">
-			      <input type="checkbox" value="Weapons" id="Weapons"/>
+			      <input type="checkbox" value="Weapons" id="Weapons" name="weapons" />
 			      <span>Weapons</span>
 			    </label>
 			    <label for="Breaking">
-			      <input type="checkbox" value="Breaking" id="Breaking"/>
+			      <input type="checkbox" value="Breaking" id="Breaking" name="breaking" />
 			      <span>Breaking</span>
 			    </label>
 			    <label for="Sparring">
-			      <input type="checkbox" value="Sparring" id="Sparring"/>
+			      <input type="checkbox" value="Sparring" id="Sparring" name="sparring" />
 			      <span>Sparring</span>
 			    </label>
 			    <label for="Point">
-			      <input type="checkbox" value="Point" id="Point"/>
+			      <input type="checkbox" value="Point" id="Point" name="point" />
 			      <span>Point</span>
 			    </label>
 			    <label for="Olympic">
-			      <input type="checkbox" value="Olympic" id="Olympic" />
+			      <input type="checkbox" value="Olympic" id="Olympic" name="olympic" />
 			      <span>Olympic</span>
 			    </label>
 			  </fieldset>
 
 			  <label for="boards">Number of Boards (optional)</label>
-			  <input type="text" id="boards" class="small" />
+			  <input type="text" id="boards" class="small" name="boards" />
 		</div>
 
 		<div class="sixteen columns">
