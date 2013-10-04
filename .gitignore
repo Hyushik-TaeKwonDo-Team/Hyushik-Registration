@@ -4,3 +4,6 @@
 *.ear
 *.class
 *.properties
+*.properties
+
+code/Hyushik_Registration_Test/webserver.properties

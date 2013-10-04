@@ -138,7 +138,7 @@
 		</div>
 
 		<div class="sixteen columns">
-			<button type="submit" style="float:right">Submit Form</button>
+			<button id="submitButton" type="submit" style="float:right">Submit Form</button>
 		</div>
 
 		</form>
