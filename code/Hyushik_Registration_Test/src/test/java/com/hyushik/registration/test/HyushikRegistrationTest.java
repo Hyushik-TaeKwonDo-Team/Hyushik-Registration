@@ -58,7 +58,7 @@ public class HyushikRegistrationTest{
     @Test
     public void assTrue(){
         String actualTitle = driver.getTitle();
-        assertEquals("Hyushik Registration", actualTitle);
+        assertEquals("Tournament Registration", actualTitle);
         
     } 
     
