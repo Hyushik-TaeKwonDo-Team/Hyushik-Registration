@@ -53,11 +53,11 @@
 			    <fieldset>
 		    <label for="">Gender *</label>
 		    <label for="male">
-		      <input type="radio" name="male" id="male" value="male" name="male" />
+		      <input type="radio" id="male" value="male" name="gender" />
 		      <span>Male</span>
 		    </label>
 		    <label for="female">
-		      <input type="radio" name="female" id="female" value="female" name="female" />
+		      <input type="radio" id="female" value="female" name="gender" />
 		      <span>Female</span>
 		    </label>
 		  </fieldset>
