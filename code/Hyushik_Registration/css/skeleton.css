@@ -573,3 +573,7 @@ Table of Contents
         font-weight: normal;
         font-style: normal; }
 */
+
+.error{
+    box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+}

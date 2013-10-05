@@ -17,6 +17,43 @@
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+
+	<script>
+	  function validate(){
+	  var elems = document.getElementsByClassName('required');
+	  var allgood = true;
+
+	  //Loop through all elements with the "required" class
+	  for( var i = 0; i < elems.length; i++ ) {
+	    if( !elems[i].value || !elems[i].value.length ) {
+	    	if(hasClass(elems[i],"small")){
+	    		elems[i].className = "small required error";
+	    	}else{
+	    		elems[i].className = "required error";
+	    	}
+	    	allgood = false;
+	    }else if(hasClass(elems[i],"error")){
+	    	if(hasClass(elems[i],"small")){
+	    		elems[i].className = "small required";
+	    	}else{
+	    		elems[i].className = "required";
+	    	}
+	    }
+	  }
+
+	  //If there was a required form not filled in return false
+	  if( !allgood ) {
+	    alert( "Please fill in all the required fields." );
+	    return false;
+	  }
+
+	  return true;
+	  }
+
+	  function hasClass(element, cls) {
+    	return (' ' + element.className + ' ').indexOf(' ' + cls + ' ') > -1;
+	  }
+	</script>
 </head>
 <body>
 
@@ -28,27 +65,27 @@
 			<h5>Tournament Registration</h5>
 			<hr />
 		</div>
-		<form action="signup.php" method="post">
+		<form onsubmit="return validate();" action="signup.php" method="post">
 		<div class="one-third column">
 			<h3>Participant Info</h3>
 			
 			  <label for="name">Name *</label>
-			  <input type="text" id="name" name="name" />
+			  <input type="text" id="name" name="name" class="required" />
 			  <label for="email">Email *</label>
-			  <input type="text" id="email" name="email"/>
+			  <input type="text" id="email" name="email" class="required"/>
 			  <label for="address">Address *</label>
-			  <input type="text" id="address" name="address" />
+			  <input type="text" id="address" name="address" class="required"/>
 			  <label for="city">City *</label>
-			  <input type="text" id="city" name="city" />
+			  <input type="text" id="city" name="city" class="required"/>
 			  <ul><li>
 			  <label for="state">State *</label>
-			  <input type="text" id="state" class="small" name="state" />
+			  <input type="text" id="state" class="small required" name="state" />
 			  </li><li>
 			  <label for="zip">Zip Code *</label>
-			  <input type="text" id="zip" class="small" name="zip" />
+			  <input type="text" id="zip" class="small required" name="zip" />
 			  </li></ul>
 			  <label for="phone">Phone *</label>
-			  <input type="text" id="phone" name="phone" />
+			  <input type="text" id="phone" name="phone" class="required"/>
 
 			    <fieldset>
 		    <label for="">Gender *</label>
@@ -67,9 +104,9 @@
 		<div class="one-third column">
 			<h3>School Info</h3>
 			  <label for="instructor">Instructor *</label>
-			  <input type="text" id="instructor" name="instructor" />
+			  <input type="text" id="instructor" name="instructor" class="required"/>
 			  <label for="schoolname">Martial Arts School *</label>
-			  <input type="text" id="schoolname" name="schoolname" />
+			  <input type="text" id="schoolname" name="schoolname" class="required"/>
 			  <label for="schooladdress">School Address</label>
 			  <input type="text" id="schooladdress" name="schooladdress" />
 			  <label for="schoolcity">City</label>
@@ -91,7 +128,7 @@
 			<h3>Ranking / Events</h3>
 
 			  <label for="rank">Rank *</label>
-			  <select id="rank" name="rank">
+			  <select id="rank" name="rank" class="required">
 			    <option value="White">White</option>
 			    <option value="Yellow/Orange">Yellow/Orange</option>
 			    <option value="Green">Green</option>
@@ -102,10 +139,10 @@
 			 
 			  <ul><li>
 			  <label for="age">Age *</label>
-			  <input type="text" id="age" class="small" name="age" />
+			  <input type="text" id="age" class="small required" name="age" />
 			  </li><li> 
 			  <label for="weight">Weight (lbs) *</label>
-			  <input type="text" id="weight" class="small" name="weight" />
+			  <input type="text" id="weight" class="small required" name="weight" />
 			  </li>
 			  </ul>	 
 			 
