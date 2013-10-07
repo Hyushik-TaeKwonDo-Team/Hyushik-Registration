@@ -248,7 +248,7 @@ public class Participant {
     public String[] toCSVLine(){
  
         return new String[]{name,email,address,city,state,zip,phone,gender.toString(),
-            instructorName, schoolName, schoolAddress, schoolCity, schoolState, 
+            instructorName, schoolName, schoolAddress, schoolCity, schoolState, schoolZip, 
             schoolPhone, schoolEmail, rank.toString(), Integer.toString(age), 
             Integer.toString(weight), boolToStringRep(weapons), 
             boolToStringRep(breaking), boolToStringRep(sparring), 
