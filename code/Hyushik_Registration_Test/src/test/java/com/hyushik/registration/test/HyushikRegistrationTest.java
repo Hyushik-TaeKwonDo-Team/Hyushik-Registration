@@ -120,8 +120,10 @@ public class HyushikRegistrationTest {
             Logger.getLogger(HyushikRegistrationTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        for(String[] inputLine : results){
-            validateParticipantsInCSVFile(part1, inputLine);
+        //validate header
+        
+        for(int i=1; i < results.size();++i){
+            validateParticipantsInCSVFile(part1, results.get(i));
         }
     }
     
