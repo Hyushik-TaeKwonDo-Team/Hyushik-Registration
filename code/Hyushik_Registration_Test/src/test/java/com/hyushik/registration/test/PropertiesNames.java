@@ -11,4 +11,5 @@ package com.hyushik.registration.test;
 public class PropertiesNames {
    public static String weburl = "weburl";
    public static String filepathToWebRoot = "filepathToWebRoot";
+   public static String csvFileName = "csvFileName";
 }
