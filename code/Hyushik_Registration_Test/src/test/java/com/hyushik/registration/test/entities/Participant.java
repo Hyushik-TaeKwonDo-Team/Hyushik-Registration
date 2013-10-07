@@ -10,28 +10,67 @@ package com.hyushik.registration.test.entities;
  */
 public class Participant {
     
-    private String name;
-    private String email;
-    private String address;
-    private String city;
-    private String state;
+    private String name = "";
+    private String email = "";
+    private String address = "";
+    private String city = "";
+    private String state = "";
 
-    private String zip;
-    private String phone;
+    private String zip = "";
+    private String phone = "";
     
-    public Gender gender;
+    public Gender gender = Gender.MALE;
     
-    private String instructor;
-    private String school;
+    private String instructorName = "";
+    private String schoolName = "";
+    private String schoolAddress = "";
+    private String schoolCity = "";
+    private String schoolState = "";
+    private String schoolPhone = "";
+    private String schoolEmail = "";
     
-    public int age;
-    public int weight;
+    private Rank rank = Rank.WHITE;
+    private int age = 0;
+    private int weight = 0;
+    
+    private boolean weapons = false;
+    private boolean breaking = false;
+    private boolean sparring = false;
+    private boolean point = false;
+    private boolean olympic = false;
+    
+    private int numberOfBoards = 0;
     
     public static enum Gender {
-        MALE,
-        FEMALE;
+        MALE("male"),
+        FEMALE("female");
+        
+        private String text="";
+        
+        Gender(String text) {
+            this.text = text;
+        }
     }
     
+    public static enum Rank {
+        WHITE("white"),
+        YELLOW_ORANGE("yellow/orange"),
+        GREEN("green"),
+        BLUE("blue"),
+        BROWN_RED("brown/red"),
+        BLACK("black");
+        
+        private String text = ""; 
+        Rank(String text) {
+            this.text = text;
+        }
+    }
+
+    public Participant() {
+    }
+    
+    
+    //minimal for Registration
     public Participant(String name, String email, String address, String city, 
             String state, String zip, String phone, String instructor, 
             String school, int age, int weight) {
@@ -42,12 +81,12 @@ public class Participant {
         this.state = state;
         this.zip = zip;
         this.phone = phone;
-        this.instructor = instructor;
-        this.school = school;
+        this.instructorName = instructor;
+        this.schoolName = school;
         this.age = age;
         this.weight = weight;
     }
-    
+
     public Participant(String name, String email, String address, String city, 
             String state, String zip, String phone, Gender gender, 
             String instructor, String school, int age, int weight
@@ -57,7 +96,44 @@ public class Participant {
         this.gender = gender;
     }
     
-        public String getName() {
+    public Participant(String name, String email, String address, String city, 
+            String state, String zip, String phone, Gender gender, 
+            String instructorName, String schoolName, String schoolAddress, 
+            String schoolCity, String schoolState, String schoolPhone, 
+            String schoolEmail, Rank rank, int age, int weight){
+        this(name, email, address, city, state, zip, phone, gender, instructorName, schoolName, 
+                age, weight);
+        this.schoolAddress = schoolAddress;
+        this.schoolCity = schoolCity ;
+        this.schoolState = schoolState;
+        this.schoolPhone = schoolPhone;
+        this.schoolEmail = schoolEmail;
+        this.rank = rank;
+    }
+   
+    
+    public Participant(String name, String email, String address, String city, 
+            String state, String zip, String phone, Gender gender, 
+            String instructorName, String schoolName, String schoolAddress, 
+            String schoolCity, String schoolState, String schoolPhone, 
+            String schoolEmail, Rank rank, int age, int weight, boolean weapons,
+            boolean breaking, boolean sparring, boolean point, boolean olympic,
+            int numberOfBoards){
+        this(name, email, address, city, state, zip, phone, gender, 
+            instructorName, schoolName, schoolAddress, 
+            schoolCity, schoolState, schoolPhone, 
+            schoolEmail, rank, age, weight);
+        
+        this.weapons=weapons;
+        this.breaking = breaking;
+        this.sparring = sparring;
+        this.point = point; 
+        this.olympic = olympic;
+        this.numberOfBoards = numberOfBoards;
+                
+    }
+
+    public String getName() {
         return name;
     }
 
@@ -89,14 +165,38 @@ public class Participant {
         return gender;
     }
 
-    public String getInstructor() {
-        return instructor;
+    public String getInstructorName() {
+        return instructorName;
     }
 
-    public String getSchool() {
-        return school;
+    public String getSchoolName() {
+        return schoolName;
     }
-    
+
+    public String getSchoolAddress() {
+        return schoolAddress;
+    }
+
+    public String getSchoolCity() {
+        return schoolCity;
+    }
+
+    public String getSchoolState() {
+        return schoolState;
+    }
+
+    public String getSchoolPhone() {
+        return schoolPhone;
+    }
+
+    public String getSchoolEmail() {
+        return schoolEmail;
+    }
+
+    public Rank getRank() {
+        return rank;
+    }
+
     public int getAge() {
         return age;
     }
@@ -104,6 +204,58 @@ public class Participant {
     public int getWeight() {
         return weight;
     }
+
+    public boolean isWeapons() {
+        return weapons;
+    }
+
+    public boolean isBreaking() {
+        return breaking;
+    }
+
+    public boolean isSparring() {
+        return sparring;
+    }
+
+    public boolean isPoint() {
+        return point;
+    }
+
+    public boolean isOlympic() {
+        return olympic;
+    }
+
+    public int getNumberOfBoards() {
+        return numberOfBoards;
+    }
+    
+    public String[] toCSVLine(){
+        
+        
+        return new String[]{name,email,address,city,state,zip,phone,gender.toString(),
+            instructorName, schoolName, schoolAddress, schoolCity, schoolState, 
+            schoolPhone, schoolEmail, rank.toString(), Integer.toString(age), 
+            Integer.toString(weight), boolToStringRep(weapons), 
+            boolToStringRep(breaking), boolToStringRep(sparring), 
+            boolToStringRep(point), boolToStringRep(olympic), 
+            Integer.toString(numberOfBoards)};
+    }
+    
+    private String boolToStringRep(boolean bool){
+        return bool ? "yes": "no";
+    }
+
+
+    
+   
+    
+    
+
+
+    
+    
+    
+    
 
     
 }

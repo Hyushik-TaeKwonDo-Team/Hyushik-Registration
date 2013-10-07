@@ -46,16 +46,17 @@ public class HyushikRegistrationTest {
     private String csvName;
     private String csvPath;
     private WebDriver driver;
-    private String[] csvHeaderLine = new String[]{"Name", "Email", "Address", "City", "State", "Zip", 
-            "Phone", "Gender", "Instructor Name", "School Name", 
-            "School Address", "School City", "School State", "School Zip", 
-            "School Phone", "School Email", "Rank", "Age", "Weight", "Weapons", 
-            "Breaking", "Sparring", "Point", "Olympic", "Boards"};
-    
+    private String[] csvHeaderLine = new String[]{"Name", "Email", "Address", 
+        "City", "State", "Zip", "Phone", "Gender", "Instructor Name", 
+        "School Name", "School Address", "School City", "School State", 
+        "School Zip", "School Phone", "School Email", "Rank", "Age", "Weight", 
+        "Weapons", "Breaking", "Sparring", "Point", "Olympic", "Boards"};
     private Participant part1 = new Participant("Test Participant",
             "test@test.com", "5 Nowhere Lane", "Bangor",
-            "Maine", "12345", "555-55-5555", Participant.Gender.MALE,
-            "Test Instructor", "Test School", 23, 195);
+            "Maine", "12345", "555-555-5555", Participant.Gender.MALE,
+            "Test Instructor", "Test School", "6 Somewhere Lane", 
+            "Olgunquit", "Maine", "666-666-6666", 
+            "dojo@dojo.com", Participant.Rank.WHITE, 23, 195);
 
     private void setUpVars() {
         FileInputStream fizban;
@@ -97,7 +98,10 @@ public class HyushikRegistrationTest {
 
     @Test
     public void CSVFileIsBeingWritten() {
-        WebElement myDynamicElement = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id("name")));
+        WebElement myDynamicElement = 
+                (new WebDriverWait(driver, 10)).until(
+                ExpectedConditions.presenceOfElementLocated(By.id("name"))
+                );
         submitRegistration(part1);
         assertTrue("File " + csvPath + " does not exist.", fileExists(csvPath));
 
@@ -105,7 +109,10 @@ public class HyushikRegistrationTest {
 
     @Test
     public void oneRegistrationIsSucessful() {
-        WebElement myDynamicElement = (new WebDriverWait(driver, 10)).until(ExpectedConditions.presenceOfElementLocated(By.id("name")));
+        WebElement myDynamicElement = 
+                (new WebDriverWait(driver, 10)).until(
+                ExpectedConditions.presenceOfElementLocated(By.id("name"))
+                );
         submitRegistration(part1);
         List<Participant> parts = new ArrayList<Participant>(Arrays.asList(part1));
         validateParticipantsInCSVFile(parts);
@@ -131,11 +138,11 @@ public class HyushikRegistrationTest {
     }
 
     private void validateHeaderInCSVFile(String[] expectedHeader, String[] actualHeader) {
-        assertTrue(Arrays.equals(expectedHeader, actualHeader));
+        compareCSVLine(expectedHeader, actualHeader);
     }
 
     private void validateParticipantsInCSVFile(Participant part, String[] inputLine) {
-        assertEquals(part.getName(), inputLine[0]);
+        assertTrue(Arrays.deepEquals(part.toCSVLine(), inputLine));
     }
 
     @After
@@ -160,6 +167,7 @@ public class HyushikRegistrationTest {
         return csv.exists();
     }
 
+    
     private void submitRegistration(Participant part) {
         driver.findElement(By.id("name")).sendKeys(part.getName());
         driver.findElement(By.id("email")).sendKeys(part.getEmail());
@@ -175,8 +183,8 @@ public class HyushikRegistrationTest {
             driver.findElement(By.id("female")).click();
         }
 
-        driver.findElement(By.id("instructor")).sendKeys(part.getInstructor());
-        driver.findElement(By.id("schoolname")).sendKeys(part.getSchool());
+        driver.findElement(By.id("instructor")).sendKeys(part.getInstructorName());
+        driver.findElement(By.id("schoolname")).sendKeys(part.getSchoolName());
 
         driver.findElement(By.id("age")).sendKeys(Integer.toString(part.getAge()));
         driver.findElement(By.id("weight")).sendKeys(Integer.toString(part.getWeight()));
