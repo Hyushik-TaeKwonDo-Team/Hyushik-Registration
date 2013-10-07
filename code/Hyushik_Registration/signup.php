@@ -3,6 +3,14 @@
 
 <?php 
 
+/* If reigstration file dones't exist, create it with comlumns */
+if(!file_exists('registration.csv')){
+	$list = array('name', 'email', 'address', 'city', 'state', 'zip', 'phone', 'gender', 'instructor', 'schoolname', 'schooladdress', 'schoolcity', 'schoolstate', 'schoolzip', 'schoolphone', 'schoolemail', 'rank', 'age', 'weight', 'weapons', 'breaking', 'sparring', 'point', 'olympic', 'boards' );
+	$fp = fopen('registration.csv', 'a');
+	fputcsv($fp, $list);
+	fclose($fp);
+}
+
 /* Participant Info */
 $name =  $_POST["name"];
 $email = $_POST["email"];
