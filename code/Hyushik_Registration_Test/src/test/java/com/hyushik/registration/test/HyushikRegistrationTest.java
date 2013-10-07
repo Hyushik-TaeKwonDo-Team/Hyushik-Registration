@@ -47,6 +47,12 @@ public class HyushikRegistrationTest {
     private String csvPath;
     private WebDriver driver;
     
+    private String[] csvHeaderLine = new String[]{"name","email","address",
+        "city","state","zip","phone","gender","instructor","schoolname",
+        "schooladdress","schoolcity","schoolstate","schoolzip",
+        "schoolphone","schoolemail","rank","age","weight","weapons","breaking",
+        "sparring","point","olympic","boards"};
+    
     private Participant part1 = new Participant("Test Participant", 
             "test@test.com", "5 Nowhere Lane", "Bangor", 
             "Maine", "12345", "555-55-5555", Participant.Gender.MALE, 
@@ -120,11 +126,14 @@ public class HyushikRegistrationTest {
             Logger.getLogger(HyushikRegistrationTest.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        //validate header
-        
+        validateHeaderInCSVFile(csvHeaderLine, results.get(0));
         for(int i=1; i < results.size();++i){
             validateParticipantsInCSVFile(part1, results.get(i));
         }
+    }
+    
+    private void validateHeaderInCSVFile(String[] expectedHeader, String[] actualHeader){
+        assertTrue( Arrays.equals(expectedHeader, actualHeader) );
     }
     
     private void validateParticipantsInCSVFile(Participant part, String[] inputLine){
