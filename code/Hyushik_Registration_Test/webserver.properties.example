@@ -1,0 +1,5 @@
+#DO NOT COMMIT THIS FILE WITH REAL DATA!
+#rename this to "webserver.properties" and fill out data
+weburl=[LOCAL URL OF WEB SITE]
+filepathToWebRoot=[FILEPATH TO CSV FILE, END WITH A "\" or "/"]
+csvFileName=[FILE NAME]
