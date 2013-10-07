@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
@@ -55,8 +56,8 @@ public class HyushikRegistrationTest {
             "test@test.com", "5 Nowhere Lane", "Bangor",
             "Maine", "12345", "555-555-5555", Participant.Gender.MALE,
             "Test Instructor", "Test School", "6 Somewhere Lane", 
-            "Olgunquit", "Maine", "666-666-6666", 
-            "dojo@dojo.com", Participant.Rank.WHITE, 23, 195);
+            "Olgunquit", "Maine", "666-666-6666", "65432",
+            "dojo@test.com", Participant.Rank.WHITE, 23, 195);
 
     private void setUpVars() {
         FileInputStream fizban;
@@ -142,7 +143,8 @@ public class HyushikRegistrationTest {
     }
 
     private void validateParticipantsInCSVFile(Participant part, String[] inputLine) {
-        assertTrue(Arrays.deepEquals(part.toCSVLine(), inputLine));
+        String[] sourceArray = part.toCSVLine();
+        assertTrue(Arrays.deepEquals(sourceArray, inputLine));
     }
 
     @After
@@ -185,9 +187,38 @@ public class HyushikRegistrationTest {
 
         driver.findElement(By.id("instructor")).sendKeys(part.getInstructorName());
         driver.findElement(By.id("schoolname")).sendKeys(part.getSchoolName());
+        driver.findElement(By.id("schooladdress")).sendKeys(part.getSchoolAddress());
+        driver.findElement(By.id("schoolcity")).sendKeys(part.getSchoolCity());
+        driver.findElement(By.id("schoolstate")).sendKeys(part.getSchoolState());
+        driver.findElement(By.id("schoolzip")).sendKeys(part.getSchoolZip());
+        driver.findElement(By.id("schoolphone")).sendKeys(part.getSchoolPhone());
+        driver.findElement(By.id("schoolemail")).sendKeys(part.getSchoolEmail());
+
+        WebElement ddlRank = driver.findElement(By.id("rank"));
+        Select rankSelect = new Select(ddlRank);
+        rankSelect.selectByValue(part.getRank().toString());
 
         driver.findElement(By.id("age")).sendKeys(Integer.toString(part.getAge()));
         driver.findElement(By.id("weight")).sendKeys(Integer.toString(part.getWeight()));
+        
+        //checkboxes
+        if(part.isWeapons()){
+            driver.findElement(By.id("Weapons")).click();
+        }
+        if(part.isBreaking()){
+            driver.findElement(By.id("Breaking")).click();
+        }
+        if(part.isSparring()){
+            driver.findElement(By.id("Sparring")).click();
+        }
+        if(part.isPoint()){
+            driver.findElement(By.id("Point")).click();
+        }
+        if(part.isOlympic()){
+            driver.findElement(By.id("Olympic")).click();
+        }
+        
+        driver.findElement(By.id("boards")).sendKeys(Integer.toString(part.getNumberOfBoards()));
 
         driver.findElement(By.id("submitButton")).click();
     }

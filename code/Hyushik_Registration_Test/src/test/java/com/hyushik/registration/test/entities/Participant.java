@@ -26,6 +26,7 @@ public class Participant {
     private String schoolAddress = "";
     private String schoolCity = "";
     private String schoolState = "";
+    private String schoolZip = "";
     private String schoolPhone = "";
     private String schoolEmail = "";
     
@@ -50,19 +51,29 @@ public class Participant {
         Gender(String text) {
             this.text = text;
         }
+        
+        @Override
+        public String toString(){
+            return text;
+        }
     }
     
     public static enum Rank {
-        WHITE("white"),
-        YELLOW_ORANGE("yellow/orange"),
-        GREEN("green"),
-        BLUE("blue"),
-        BROWN_RED("brown/red"),
-        BLACK("black");
+        WHITE("White"),
+        YELLOW_ORANGE("Yellow/Orange"),
+        GREEN("Green"),
+        BLUE("Blue"),
+        BROWN_RED("Brown/Red"),
+        BLACK("Black");
         
         private String text = ""; 
         Rank(String text) {
             this.text = text;
+        }
+        
+        @Override
+        public String toString(){
+            return text;
         }
     }
 
@@ -99,7 +110,7 @@ public class Participant {
     public Participant(String name, String email, String address, String city, 
             String state, String zip, String phone, Gender gender, 
             String instructorName, String schoolName, String schoolAddress, 
-            String schoolCity, String schoolState, String schoolPhone, 
+            String schoolCity, String schoolState, String schoolZip, String schoolPhone, 
             String schoolEmail, Rank rank, int age, int weight){
         this(name, email, address, city, state, zip, phone, gender, instructorName, schoolName, 
                 age, weight);
@@ -108,6 +119,7 @@ public class Participant {
         this.schoolState = schoolState;
         this.schoolPhone = schoolPhone;
         this.schoolEmail = schoolEmail;
+        this.schoolZip = schoolZip;
         this.rank = rank;
     }
    
@@ -115,13 +127,13 @@ public class Participant {
     public Participant(String name, String email, String address, String city, 
             String state, String zip, String phone, Gender gender, 
             String instructorName, String schoolName, String schoolAddress, 
-            String schoolCity, String schoolState, String schoolPhone, 
+            String schoolCity, String schoolState, String schoolZip, String schoolPhone,
             String schoolEmail, Rank rank, int age, int weight, boolean weapons,
             boolean breaking, boolean sparring, boolean point, boolean olympic,
             int numberOfBoards){
         this(name, email, address, city, state, zip, phone, gender, 
             instructorName, schoolName, schoolAddress, 
-            schoolCity, schoolState, schoolPhone, 
+            schoolCity, schoolState, schoolZip, schoolPhone, 
             schoolEmail, rank, age, weight);
         
         this.weapons=weapons;
@@ -185,6 +197,10 @@ public class Participant {
         return schoolState;
     }
 
+    public String getSchoolZip() {
+        return schoolZip;
+    }
+    
     public String getSchoolPhone() {
         return schoolPhone;
     }
@@ -230,8 +246,7 @@ public class Participant {
     }
     
     public String[] toCSVLine(){
-        
-        
+ 
         return new String[]{name,email,address,city,state,zip,phone,gender.toString(),
             instructorName, schoolName, schoolAddress, schoolCity, schoolState, 
             schoolPhone, schoolEmail, rank.toString(), Integer.toString(age), 
@@ -242,7 +257,7 @@ public class Participant {
     }
     
     private String boolToStringRep(boolean bool){
-        return bool ? "yes": "no";
+        return bool ? "Yes": "No";
     }
 
 
