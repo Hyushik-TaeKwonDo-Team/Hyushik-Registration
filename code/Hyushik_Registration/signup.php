@@ -5,7 +5,11 @@
 
 /* If reigstration file dones't exist, create it with comlumns */
 if(!file_exists('registration.csv')){
-	$list = array('name', 'email', 'address', 'city', 'state', 'zip', 'phone', 'gender', 'instructor', 'schoolname', 'schooladdress', 'schoolcity', 'schoolstate', 'schoolzip', 'schoolphone', 'schoolemail', 'rank', 'age', 'weight', 'weapons', 'breaking', 'sparring', 'point', 'olympic', 'boards' );
+	$list = array('Name', 'Email', 'Address', 'City', 'State', 'Zip', 
+            'Phone', 'Gender', 'Instructor Name', 'School Name', 
+            'School Address', 'School City', 'School State', 'School Zip', 
+            'School Phone', 'School Email', 'Rank', 'Age', 'Weight', 'Weapons', 
+            'Breaking', 'Sparring', 'Point', 'Olympic', 'Boards' );
 	$fp = fopen('registration.csv', 'a');
 	fputcsv($fp, $list);
 	fclose($fp);
