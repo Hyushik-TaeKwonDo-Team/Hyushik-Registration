@@ -6,3 +6,5 @@
 *.properties
 
 code/Hyushik_Registration_Test/webserver.properties
+/code/Hyushik_Registration/nbproject/private/
+code/Hyushik_Registration/nbproject/project.xml
