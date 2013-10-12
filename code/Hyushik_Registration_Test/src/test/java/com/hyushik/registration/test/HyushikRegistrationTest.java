@@ -58,6 +58,12 @@ public class HyushikRegistrationTest {
             "Test Instructor", "Test School", "6 Somewhere Lane", 
             "Olgunquit", "Maine", "666-666-6666", "65432",
             "dojo@test.com", Participant.Rank.WHITE, 23, 195);
+    private Participant part2 = new Participant("Test Participant 2",
+            "test@test.org", "6 Nowhere Lane", "Bangoria",
+            "Mainah", "54321", "555-555-5553", Participant.Gender.FEMALE,
+            "Test Instructor 2", "Test School 2", "90 Somewhere Lane", 
+            "Olgundontquit", "Mainah", "666-666-6663", "99999",
+            "dojo@test.org", Participant.Rank.BROWN_RED, 30, 200);
 
     private void setUpVars() {
         FileInputStream fizban;
@@ -116,6 +122,21 @@ public class HyushikRegistrationTest {
                 );
         submitRegistration(part1);
         List<Participant> parts = new ArrayList<Participant>(Arrays.asList(part1));
+        validateParticipantsInCSVFile(parts);
+    }
+    
+    @Test
+    public void twoRegistrationsAreSucessful() {
+        
+        List<Participant> parts = new ArrayList<Participant>(Arrays.asList(part1, part2));
+        for(Participant part : parts){
+           driver.get(baseUrl);
+           WebElement myDynamicElement = 
+                (new WebDriverWait(driver, 10)).until(
+                ExpectedConditions.presenceOfElementLocated(By.id("name"))
+                );
+           submitRegistration(part); 
+        }
         validateParticipantsInCSVFile(parts);
     }
 
