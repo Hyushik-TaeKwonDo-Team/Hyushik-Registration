@@ -155,7 +155,7 @@ public class HyushikRegistrationTest {
 
         validateHeaderInCSVFile(csvHeaderLine, results.get(0));
         for (int i = 1; i < results.size(); ++i) {
-            validateParticipantsInCSVFile(part1, results.get(i));
+            validateParticipantsInCSVFile(participants.get(i-1), results.get(i));
         }
     }
 
@@ -271,7 +271,7 @@ public class HyushikRegistrationTest {
     }
 
     private void compareCSVLine(String[] expected, String[] received) {
-        assertTrue("Expect CSV line "
+        assertTrue("Expected CSV line "
                 + expected.toString() + " "
                 + "does not match read line "
                 + received.toString() + ".",
