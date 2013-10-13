@@ -84,13 +84,7 @@ $fp = fopen('registration.csv', 'a');
 fputcsv($fp, $result);
 fclose($fp);
 
-echo "You have successfully registered for Tournament!"
-
-/*
-echo "Name: $name <br>";
-echo "Email: $email <br>";
-echo "Weapons: $weapons";
-*/
+echo "You have successfully registered for the Tournament!"
 
 ?>
 
