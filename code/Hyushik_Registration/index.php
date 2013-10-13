@@ -163,11 +163,11 @@
 			    </label>
 			    <label for="Point">
 			      <input type="checkbox" value="Point" id="Point" name="point" />
-			      <span>Sparring Point</span>
+			      <span>Sparring (Point)</span>
 			    </label>
 			    <label for="Olympic">
 			      <input type="checkbox" value="Olympic" id="Olympic" name="olympic" />
-			      <span>Sparring Olympic</span>
+			      <span>Sparring (Olympic)</span>
 			    </label>
 			  </fieldset>
 

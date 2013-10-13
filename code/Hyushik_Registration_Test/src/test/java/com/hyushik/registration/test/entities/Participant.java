@@ -4,6 +4,11 @@
  */
 package com.hyushik.registration.test.entities;
 
+import java.util.EnumMap;
+import java.util.Map;
+import java.util.TreeMap;
+import org.apache.commons.lang3.ArrayUtils;
+
 /**
  *
  * @author McAfee
@@ -19,7 +24,7 @@ public class Participant {
     private String zip = "";
     private String phone = "";
     
-    public Gender gender = Gender.MALE;
+    private Gender gender = Gender.MALE;
     
     private String instructorName = "";
     private String schoolName = "";
@@ -40,7 +45,7 @@ public class Participant {
     private boolean point = false;
     private boolean olympic = false;
     
-    private int numberOfBoards = 0;
+    private Map<BoardSize, Integer> boards = new EnumMap<BoardSize, Integer>(BoardSize.class);
     
     public static enum Gender {
         MALE("male"),
@@ -76,6 +81,22 @@ public class Participant {
             return text;
         }
     }
+    public static enum BoardSize {
+        QUARTER_INCH("1/4in"),
+        THIRD_INCH("1/3in"),
+        HALF_INCH("1/2in");
+        
+        
+        private String text = ""; 
+        BoardSize(String text) {
+            this.text = text;
+        }
+        
+        @Override
+        public String toString(){
+            return text;
+        }
+    }
 
     public Participant() {
     }
@@ -84,7 +105,7 @@ public class Participant {
     //minimal for Registration
     public Participant(String name, String email, String address, String city, 
             String state, String zip, String phone, String instructor, 
-            String school, int age, int weight) {
+            String school, int age, int weight, Map<BoardSize, Integer> boards) {
         this.name = name;
         this.email = email;
         this.address = address;
@@ -96,14 +117,15 @@ public class Participant {
         this.schoolName = school;
         this.age = age;
         this.weight = weight;
+        this.boards=boards;
     }
 
     public Participant(String name, String email, String address, String city, 
             String state, String zip, String phone, Gender gender, 
-            String instructor, String school, int age, int weight
-            ){
+            String instructor, String school, int age, int weight,
+            Map<BoardSize, Integer> boards){
         this(name, email, address, city, state, zip, phone, instructor, school, 
-                age, weight);
+                age, weight, boards);
         this.gender = gender;
     }
     
@@ -111,9 +133,10 @@ public class Participant {
             String state, String zip, String phone, Gender gender, 
             String instructorName, String schoolName, String schoolAddress, 
             String schoolCity, String schoolState, String schoolZip, String schoolPhone, 
-            String schoolEmail, Rank rank, int age, int weight){
+            String schoolEmail, Rank rank, int age, int weight, 
+            Map<BoardSize, Integer> boards){
         this(name, email, address, city, state, zip, phone, gender, instructorName, schoolName, 
-                age, weight);
+                age, weight, boards);
         this.schoolAddress = schoolAddress;
         this.schoolCity = schoolCity ;
         this.schoolState = schoolState;
@@ -130,19 +153,17 @@ public class Participant {
             String schoolCity, String schoolState, String schoolZip, String schoolPhone,
             String schoolEmail, Rank rank, int age, int weight, boolean weapons,
             boolean breaking, boolean sparring, boolean point, boolean olympic,
-            int numberOfBoards){
+            Map<BoardSize, Integer> boards){
         this(name, email, address, city, state, zip, phone, gender, 
             instructorName, schoolName, schoolAddress, 
             schoolCity, schoolState, schoolZip, schoolPhone, 
-            schoolEmail, rank, age, weight);
+            schoolEmail, rank, age, weight, boards);
         
         this.weapons=weapons;
         this.breaking = breaking;
         this.sparring = sparring;
         this.point = point; 
-        this.olympic = olympic;
-        this.numberOfBoards = numberOfBoards;
-                
+        this.olympic = olympic;      
     }
 
     public String getName() {
@@ -241,19 +262,27 @@ public class Participant {
         return olympic;
     }
 
-    public int getNumberOfBoards() {
-        return numberOfBoards;
+    public Map<BoardSize, Integer> getBoards() {
+        return boards;
     }
     
     public String[] toCSVLine(){
  
-        return new String[]{name,email,address,city,state,zip,phone,gender.toString(),
+        String[] baseLine = new String[]{name,email,address,city,state,zip,phone,gender.toString(),
             instructorName, schoolName, schoolAddress, schoolCity, schoolState, schoolZip, 
             schoolPhone, schoolEmail, rank.toString(), Integer.toString(age), 
             Integer.toString(weight), boolToStringRep(weapons), 
             boolToStringRep(breaking), boolToStringRep(sparring), 
-            boolToStringRep(point), boolToStringRep(olympic), 
-            Integer.toString(numberOfBoards)};
+            boolToStringRep(point), boolToStringRep(olympic)};
+        
+        String[] boardsLine = new String[boards.keySet().size()];
+        int i = 0;
+        for (BoardSize boardSize : boards.keySet()){
+            boardsLine[i] = boards.get(boardSize).toString();
+            i++;
+        }
+        
+        return ArrayUtils.addAll(baseLine, boardsLine);
     }
     
     private String boolToStringRep(boolean bool){
