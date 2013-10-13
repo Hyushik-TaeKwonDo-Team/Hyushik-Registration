@@ -177,16 +177,15 @@
 		<div class="sixteen columns">
 			<button id="submitButton" type="submit" style="float:right">Submit Form</button>
 		</div>
-
-		</form>
 		
-		<form method="post" action="signup.php">
-			<?php
-				require_once('recaptchalib.php');
-				$publickey = "6LeVtugSAAAAABZdvlAj2TtIqXmPI2nD1Ub8n2uA"; // you got this from the signup page
-				echo recaptcha_get_html($publickey);
-			?>
-			<input type = "submit"/>
+		<?php
+			$cfg_array = parse_ini_file ("config.ini",0);
+				if ($cfg_array['captcha_active'] == "true"){
+					require_once('recaptchalib.php');
+					$publickey = "6LeVtugSAAAAABZdvlAj2TtIqXmPI2nD1Ub8n2uA"; // you got this from the signup page
+					echo recaptcha_get_html($publickey);
+				}
+		?>
 
 		</form>
 	</div><!-- container -->
