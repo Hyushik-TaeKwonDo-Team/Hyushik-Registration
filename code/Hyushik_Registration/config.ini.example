@@ -14,7 +14,7 @@ size[1] = "1/3in"
 size[2] = "1/2in"
 
 [captcha_settings]
-captcha_active = "true"
+captcha_active = "false"
 ;no quotes
 public_key = ;public key here, please add it
 private_key = ;private key here, please add it
