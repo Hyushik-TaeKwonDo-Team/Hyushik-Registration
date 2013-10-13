@@ -63,6 +63,7 @@
 		<div class="sixteen columns">
 			<h1 class="remove-bottom" style="margin-top: 40px">Tioga Tae Kwon Do</h1>
 			<h5>Tournament Registration</h5>
+			<a href = "admin.php" style = "float:right">Admin Login</a>
 			<hr />
 		</div>
 		<form onsubmit="return validate();" action="signup.php" method="post">
