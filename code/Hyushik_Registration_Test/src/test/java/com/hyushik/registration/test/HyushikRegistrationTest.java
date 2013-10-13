@@ -104,6 +104,7 @@ public class HyushikRegistrationTest {
     }
 
     @Test
+    @Ignore
     public void CSVFileIsBeingWritten() {
         WebElement myDynamicElement = 
                 (new WebDriverWait(driver, 10)).until(
@@ -126,6 +127,7 @@ public class HyushikRegistrationTest {
     }
     
     @Test
+    @Ignore
     public void twoRegistrationsAreSucessful() {
         
         List<Participant> parts = new ArrayList<Participant>(Arrays.asList(part1, part2));
