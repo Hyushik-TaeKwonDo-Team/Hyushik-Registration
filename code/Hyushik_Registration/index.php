@@ -174,7 +174,7 @@
 
 			  <label>Number of Boards (optional)</label>
 			  <?php
-				$authFileName = "auth.ini";
+				$authFileName = "config.ini";
 				$ini_array = parse_ini_file($authFileName, true);
 				$size_array = $ini_array['BOARD_SIZES']['size'];
 				echo "<ul>";
