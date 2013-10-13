@@ -146,6 +146,7 @@ public class HyushikRegistrationTest {
         try {
             CSVReader reader = new CSVReader(new FileReader(csvPath));
             results = reader.readAll();
+            reader.close();
         } catch (FileNotFoundException ex) {
             Logger.getLogger(HyushikRegistrationTest.class.getName()).log(Level.SEVERE, null, ex);
             fail(ex.getMessage());
