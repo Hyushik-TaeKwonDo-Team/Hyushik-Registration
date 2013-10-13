@@ -152,6 +152,7 @@ public class HyushikRegistrationTest {
             fail(ex.getMessage());
         } catch (IOException ex) {
             Logger.getLogger(HyushikRegistrationTest.class.getName()).log(Level.SEVERE, null, ex);
+            fail(ex.getMessage());
         }
 
         validateHeaderInCSVFile(csvHeaderLine, results.get(0));
@@ -243,32 +244,6 @@ public class HyushikRegistrationTest {
         driver.findElement(By.id("boards")).sendKeys(Integer.toString(part.getNumberOfBoards()));
 
         driver.findElement(By.id("submitButton")).click();
-    }
-
-    private void compareCSVFile(List<String[]> expectedResults, String filepath) {
-        CSVReader reader = null;
-        try {
-            reader = new CSVReader(new FileReader(filepath));
-        } catch (FileNotFoundException fnfe) {
-            fail("The provided file " + filepath + " could not be found.");
-            return;
-        }
-        List<String[]> fileEntries = new ArrayList<String[]>();
-        try {
-            fileEntries = reader.readAll();
-        } catch (IOException ioe) {
-            fail("The provided file " + filepath + " could not be read.");
-        }
-
-        if (expectedResults.size() != fileEntries.size()) {
-            fail("There are a different number of lines between expected and read");
-        }
-
-        int i;
-        for (i = 0; i < expectedResults.size(); ++i) {
-            compareCSVLine(expectedResults.get(i), fileEntries.get(i));
-        }
-
     }
 
     private void compareCSVLine(String[] expected, String[] received) {
