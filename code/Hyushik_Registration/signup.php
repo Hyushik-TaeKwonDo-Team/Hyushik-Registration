@@ -6,7 +6,7 @@
   $cfg_array = parse_ini_file ("config.ini",0);
   if ($cfg_array['captcha_active'] == "true"){
 	require_once('recaptchalib.php');
-	$privatekey = "6LeVtugSAAAAAGZkVKqwg4v8Ii-ybsWKJLeInGBX";
+	$privatekey = $cfg_array['private_key'];
 	$resp = recaptcha_check_answer ($privatekey,
                                 $_SERVER["REMOTE_ADDR"],
                                 $_POST["recaptcha_challenge_field"],

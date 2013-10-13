@@ -194,7 +194,7 @@
 			$cfg_array = parse_ini_file ("config.ini",0);
 				if ($cfg_array['captcha_active'] == "true"){
 					require_once('lib/recaptcha/1_11/recaptchalib.php');
-					$publickey = "6LeVtugSAAAAABZdvlAj2TtIqXmPI2nD1Ub8n2uA"; // you got this from the signup page
+					$publickey = $cfg_array['public_key'];
 					echo recaptcha_get_html($publickey);
 				}
 		?>
