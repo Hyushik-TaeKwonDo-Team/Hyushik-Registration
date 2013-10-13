@@ -180,6 +180,16 @@
 		</div>
 
 		</form>
+		
+		<form method="post" action="signup.php">
+			<?php
+				require_once('recaptchalib.php');
+				$publickey = "6LeVtugSAAAAABZdvlAj2TtIqXmPI2nD1Ub8n2uA"; // you got this from the signup page
+				echo recaptcha_get_html($publickey);
+			?>
+			<input type = "submit"/>
+
+		</form>
 	</div><!-- container -->
 
 </body>
