@@ -90,7 +90,7 @@
 			    <fieldset>
 		    <label for="">Gender *</label>
 		    <label for="male">
-		      <input type="radio" id="male" value="male" name="gender" />
+		      <input type="radio" id="male" value="male" name="gender" checked="checked"/>
 		      <span>Male</span>
 		    </label>
 		    <label for="female">
@@ -156,22 +156,33 @@
 			      <input type="checkbox" value="Breaking" id="Breaking" name="breaking" />
 			      <span>Breaking</span>
 			    </label>
-			    <label for="Sparring">
-			      <input type="checkbox" value="Sparring" id="Sparring" name="sparring" />
-			      <span>Sparring</span>
+			    <label for="Forms">
+			      <input type="checkbox" value="Forms" id="Forms" name="forms" />
+			      <span>Forms</span>
 			    </label>
 			    <label for="Point">
 			      <input type="checkbox" value="Point" id="Point" name="point" />
-			      <span>Point</span>
+			      <span>Sparring Point</span>
 			    </label>
 			    <label for="Olympic">
 			      <input type="checkbox" value="Olympic" id="Olympic" name="olympic" />
-			      <span>Olympic</span>
+			      <span>Sparring Olympic</span>
 			    </label>
 			  </fieldset>
 
-			  <label for="boards">Number of Boards (optional)</label>
-			  <input type="text" id="boards" class="small" name="boards" />
+
+			  <label>Number of Boards (optional)</label>
+			  <?php
+				$authFileName = "auth.ini";
+				$ini_array = parse_ini_file($authFileName, true);
+				$size_array = $ini_array['BOARD_SIZES']['size'];
+				echo "<ul>";
+				foreach ($size_array as $size_item) {
+					echo "<li><label>$size_item</label>\n";
+					echo "<input type=\"text\" class=\"xsmall lowbottom\" id=\"$size_item\"name=\"boards[]\" value=\"0\" /></li>\n";
+				}
+				echo "</ul>";
+			  ?>
 		</div>
 
 		<div class="sixteen columns">

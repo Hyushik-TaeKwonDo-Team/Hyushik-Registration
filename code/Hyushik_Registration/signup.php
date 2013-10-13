@@ -2,16 +2,18 @@
 <body>
 
 <?php 
-
 /* If reigstration file dones't exist, create it with comlumns */
 if(!file_exists('registration.csv')){
-	$list = array('Name', 'Email', 'Address', 'City', 'State', 'Zip', 
-            'Phone', 'Gender', 'Instructor Name', 'School Name', 
-            'School Address', 'School City', 'School State', 'School Zip', 
-            'School Phone', 'School Email', 'Rank', 'Age', 'Weight', 'Weapons', 
-            'Breaking', 'Sparring', 'Point', 'Olympic', 'Boards' );
+	/* Check .ini file for board sizes columns */
+	$authFileName = "auth.ini";
+	$ini_array = parse_ini_file($authFileName, true);
+	$size_array = $ini_array['BOARD_SIZES']['size'];
+
+	$list = array('name', 'email', 'address', 'city', 'state', 'zip', 'phone', 'gender', 'instructor', 'schoolname', 'schooladdress', 'schoolcity', 'schoolstate', 'schoolzip', 'schoolphone', 'schoolemail', 'rank', 'age', 'weight', 'weapons', 'breaking', 'forms', 'point', 'olympic' );
+	$result = array_merge($list, $size_array);
+
 	$fp = fopen('registration.csv', 'a');
-	fputcsv($fp, $list);
+	fputcsv($fp, $result);
 	fclose($fp);
 }
 
@@ -43,8 +45,8 @@ if(isset($_POST['weapons'])){ $weapons = "Yes"; }
 else{ $weapons = "No"; }
 if(isset($_POST['breaking'])){ $breaking = "Yes"; }
 else{ $breaking = "No"; }
-if(isset($_POST['sparring'])){ $sparring = "Yes"; }
-else{ $sparring = "No"; }
+if(isset($_POST['forms'])){ $forms = "Yes"; }
+else{ $forms = "No"; }
 if(isset($_POST['point'])){ $point = "Yes"; }
 else{ $point = "No"; }
 if(isset($_POST['olympic'])){ $olympic = "Yes"; }
@@ -52,9 +54,13 @@ else{ $olympic = "No"; }
 $boards =  $_POST["boards"];
 
 
-$list = array($name, $email, $address, $city, $state, $zip, $phone, $gender, $instructor, $schoolname, $schooladdress, $schoolcity, $schoolstate, $schoolzip, $schoolphone, $schoolemail, $rank, $age, $weight, $weapons, $breaking, $sparring, $point, $olympic, $boards );
+$list = array($name, $email, $address, $city, $state, $zip, $phone, $gender, $instructor, $schoolname, $schooladdress, $schoolcity, $schoolstate, $schoolzip, $schoolphone, $schoolemail, $rank, $age, $weight, $weapons, $breaking, $forms, $point, $olympic );
+/* merge list array and boards array*/
+$result = array_merge($list, $boards);
+
+/* Open csv file and write to it */
 $fp = fopen('registration.csv', 'a');
-fputcsv($fp, $list);
+fputcsv($fp, $result);
 fclose($fp);
 
 echo "Name: $name <br>";

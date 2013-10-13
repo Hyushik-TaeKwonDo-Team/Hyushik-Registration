@@ -287,6 +287,15 @@ input[type="text"].small{
 width: 75px;
 }
 
+input[type="text"].xsmall{
+width: 50px;
+}
+
+li .lowbottom {
+    margin-bottom: 4px;
+    width: 50px;
+}
+
 
 
 /* 

@@ -12,3 +12,6 @@ code/Hyushik_Registration_Test/webserver.properties
 code/Hyushik_Registration/nbproject/project.xml
 
 *.csv
+*.classpath
+*.settings
+*.project
