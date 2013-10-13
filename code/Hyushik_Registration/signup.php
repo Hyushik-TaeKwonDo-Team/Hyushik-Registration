@@ -25,7 +25,7 @@
 /* If reigstration file dones't exist, create it with comlumns */
 if(!file_exists('registration.csv')){
 	/* Check .ini file for board sizes columns */
-	$authFileName = "auth.ini";
+	$authFileName = "config.ini";
 	$ini_array = parse_ini_file($authFileName, true);
 	$size_array = $ini_array['BOARD_SIZES']['size'];
 
