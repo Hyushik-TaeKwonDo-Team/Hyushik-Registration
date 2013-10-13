@@ -19,7 +19,7 @@ header("location:admin.php");
 
 }
 else {
-echo "Wrong Username or Password";
+header("location:admin.php");
 
 }
 

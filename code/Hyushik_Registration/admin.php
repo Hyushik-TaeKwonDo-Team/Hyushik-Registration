@@ -3,28 +3,41 @@
 // Put this code in first line of web page. 
 session_start();
 if(!session_is_registered(myusername)){
-header("location:main_login.php");
+	header("location:main_login.php");
+}
+
+
+
+if (isset($_POST['delete'])){
+	unlink("registration.csv");	
 }
 ?>
 
 <html>
 <body>
 Admin Page
-<!--
-	start/stop registration  
--->
-<p> toggle to start or stop the registration session </p>
 
 <!--
 	export 
 -->
-<p> link to csv file </p>
-
+<p> link to csv file <a href = "./registration.csv"> csv </a> </p>
 
 <!--
 	delete 
 -->
-<p> button/ conformation to delete csv file </p>
+<p> Delete the registration data (THIS CAN NOT BE UNDONE)
+<form action="admin.php" method="post">
+<button type="submit" value = "true" name="delete">
+DELETE
+</button>
+</form>
+
+</p>
+
+<!--
+	logout  
+-->
+<a href = "./logout.php"> logout </a>
 
 </body>
 </html>

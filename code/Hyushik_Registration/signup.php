@@ -2,6 +2,26 @@
 <body>
 
 <?php 
+
+  $cfg_array = parse_ini_file ("config.ini",0);
+  if ($cfg_array['captcha_active'] == "true"){
+	require_once('recaptchalib.php');
+	$privatekey = "6LeVtugSAAAAAGZkVKqwg4v8Ii-ybsWKJLeInGBX";
+	$resp = recaptcha_check_answer ($privatekey,
+                                $_SERVER["REMOTE_ADDR"],
+                                $_POST["recaptcha_challenge_field"],
+                                $_POST["recaptcha_response_field"]);
+
+	if (!$resp->is_valid) {
+    // What happens when the CAPTCHA was entered incorrectly
+		die ("The reCAPTCHA wasn't entered correctly. Go back and try it again." .
+         "(reCAPTCHA said: " . $resp->error . ")");
+	} else {
+    // Your code here to handle a successful verification
+	}
+}
+  
+
 /* If reigstration file dones't exist, create it with comlumns */
 if(!file_exists('registration.csv')){
 	/* Check .ini file for board sizes columns */
@@ -63,9 +83,13 @@ $fp = fopen('registration.csv', 'a');
 fputcsv($fp, $result);
 fclose($fp);
 
+echo "You have successfully registered for Tournament!"
+
+/*
 echo "Name: $name <br>";
 echo "Email: $email <br>";
 echo "Weapons: $weapons";
+*/
 
 ?>
 

@@ -63,6 +63,7 @@
 		<div class="sixteen columns">
 			<h1 class="remove-bottom" style="margin-top: 40px">Tioga Tae Kwon Do</h1>
 			<h5>Tournament Registration</h5>
+			<a href = "admin.php" style = "float:right">Admin Login</a>
 			<hr />
 		</div>
 		<form onsubmit="return validate();" action="signup.php" method="post">
@@ -188,6 +189,15 @@
 		<div class="sixteen columns">
 			<button id="submitButton" type="submit" style="float:right">Submit Form</button>
 		</div>
+		
+		<?php
+			$cfg_array = parse_ini_file ("config.ini",0);
+				if ($cfg_array['captcha_active'] == "true"){
+					require_once('recaptchalib.php');
+					$publickey = "6LeVtugSAAAAABZdvlAj2TtIqXmPI2nD1Ub8n2uA"; // you got this from the signup page
+					echo recaptcha_get_html($publickey);
+				}
+		?>
 
 		</form>
 	</div><!-- container -->
