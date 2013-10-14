@@ -50,8 +50,7 @@ if(!file_exists('registration.csv')){
 	$authFileName = "config.ini";
 	$ini_array = parse_ini_file($authFileName, true);
 	$size_array = $ini_array['BOARD_SIZES']['size'];
-
-	$list = array('name', 'email', 'address', 'city', 'state', 'zip', 'phone', 'gender', 'instructor', 'schoolname', 'schooladdress', 'schoolcity', 'schoolstate', 'schoolzip', 'schoolphone', 'schoolemail', 'rank', 'age', 'weight', 'weapons', 'breaking', 'forms', 'point', 'olympic' );
+	$list = array("Name", "Email", "Address", "City", "State", "Zip", "Phone", "Gender", "Instructor Name", "School Name", "School Address", "School City", "School State", "School Zip", "School Phone", "School Email", "Rank", "Age", "Weight", "Weapons", "Breaking", "Sparring (Point)", "Sparring (Olympic)");
 	$result = array_merge($list, $size_array);
 
 	$fp = fopen('registration.csv', 'a');
