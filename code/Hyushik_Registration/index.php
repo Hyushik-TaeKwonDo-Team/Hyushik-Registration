@@ -163,18 +163,18 @@
 			    </label>
 			    <label for="Point">
 			      <input type="checkbox" value="Point" id="Point" name="point" />
-			      <span>Sparring Point</span>
+			      <span>Sparring (Point)</span>
 			    </label>
 			    <label for="Olympic">
 			      <input type="checkbox" value="Olympic" id="Olympic" name="olympic" />
-			      <span>Sparring Olympic</span>
+			      <span>Sparring (Olympic)</span>
 			    </label>
 			  </fieldset>
 
 
 			  <label>Number of Boards (optional)</label>
 			  <?php
-				$authFileName = "auth.ini";
+				$authFileName = "config.ini";
 				$ini_array = parse_ini_file($authFileName, true);
 				$size_array = $ini_array['BOARD_SIZES']['size'];
 				echo "<ul>";
@@ -193,8 +193,8 @@
 		<?php
 			$cfg_array = parse_ini_file ("config.ini",0);
 				if ($cfg_array['captcha_active'] == "true"){
-					require_once('recaptchalib.php');
-					$publickey = "6LeVtugSAAAAABZdvlAj2TtIqXmPI2nD1Ub8n2uA"; // you got this from the signup page
+					require_once('lib/recaptcha/1_11/recaptchalib.php');
+					$publickey = $cfg_array['public_key'];
 					echo recaptcha_get_html($publickey);
 				}
 		?>

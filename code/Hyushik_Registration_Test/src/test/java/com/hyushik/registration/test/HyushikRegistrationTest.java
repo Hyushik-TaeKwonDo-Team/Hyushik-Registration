@@ -27,9 +27,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -47,23 +50,32 @@ public class HyushikRegistrationTest {
     private String csvName;
     private String csvPath;
     private WebDriver driver;
-    private String[] csvHeaderLine = new String[]{"Name", "Email", "Address", 
-        "City", "State", "Zip", "Phone", "Gender", "Instructor Name", 
-        "School Name", "School Address", "School City", "School State", 
-        "School Zip", "School Phone", "School Email", "Rank", "Age", "Weight", 
-        "Weapons", "Breaking", "Sparring", "Point", "Olympic", "Boards"};
+    private String[] csvHeaderLine = new String[]{"Name", "Email", "Address", "City", "State", "Zip", "Phone", "Gender", "Instructor Name", "School Name", "School Address", "School City", "School State", "School Zip", "School Phone", "School Email", "Rank", "Age", "Weight", "Weapons", "Breaking", "Sparring (Point)", "Sparring (Olympic)", "1/4in","1/3in","1/2in"};
     private Participant part1 = new Participant("Test Participant",
             "test@test.com", "5 Nowhere Lane", "Bangor",
             "Maine", "12345", "555-555-5555", Participant.Gender.MALE,
             "Test Instructor", "Test School", "6 Somewhere Lane", 
             "Olgunquit", "Maine", "666-666-6666", "65432",
-            "dojo@test.com", Participant.Rank.WHITE, 23, 195);
+            "dojo@test.com", Participant.Rank.WHITE, 23, 195, 
+            buildParticipantBoardCounts(0, 0, 0));
     private Participant part2 = new Participant("Test Participant 2",
             "test@test.org", "6 Nowhere Lane", "Bangoria",
             "Mainah", "54321", "555-555-5553", Participant.Gender.FEMALE,
             "Test Instructor 2", "Test School 2", "90 Somewhere Lane", 
             "Olgundontquit", "Mainah", "666-666-6663", "99999",
-            "dojo@test.org", Participant.Rank.BROWN_RED, 30, 200);
+            "dojo@test.org", Participant.Rank.BROWN_RED, 30, 200,
+            buildParticipantBoardCounts(5, 5, 5));
+    
+    private Map<Participant.BoardSize, Integer> buildParticipantBoardCounts(int quarter, int third, int half){
+        Map<Participant.BoardSize, Integer> boards = 
+                new EnumMap<Participant.BoardSize, Integer>(
+                Participant.BoardSize.class
+                );
+        boards.put(Participant.BoardSize.QUARTER_INCH, quarter);
+        boards.put(Participant.BoardSize.THIRD_INCH, third);
+        boards.put(Participant.BoardSize.HALF_INCH, half);
+        return boards;
+    }
 
     private void setUpVars() {
         FileInputStream fizban;
@@ -138,6 +150,7 @@ public class HyushikRegistrationTest {
            submitRegistration(part); 
         }
         validateParticipantsInCSVFile(parts);
+        
     }
 
     private void validateParticipantsInCSVFile(List<Participant> participants) {
@@ -157,7 +170,7 @@ public class HyushikRegistrationTest {
 
         validateHeaderInCSVFile(csvHeaderLine, results.get(0));
         for (int i = 1; i < results.size(); ++i) {
-            validateParticipantsInCSVFile(participants.get(i-1), results.get(i));
+            validateParticipantInCSVFile(participants.get(i-1), results.get(i));
         }
     }
 
@@ -165,9 +178,9 @@ public class HyushikRegistrationTest {
         compareCSVLine(expectedHeader, actualHeader);
     }
 
-    private void validateParticipantsInCSVFile(Participant part, String[] inputLine) {
+    private void validateParticipantInCSVFile(Participant part, String[] inputLine) {
         String[] sourceArray = part.toCSVLine();
-        assertTrue(Arrays.deepEquals(sourceArray, inputLine));
+        compareCSVLine(sourceArray, inputLine);
     }
 
     @After
@@ -241,16 +254,23 @@ public class HyushikRegistrationTest {
             driver.findElement(By.id("Olympic")).click();
         }
         
-        driver.findElement(By.id("boards")).sendKeys(Integer.toString(part.getNumberOfBoards()));
+        WebElement boardSizeElement;
+        for(Participant.BoardSize boardSize : part.getBoards().keySet()){
+            boardSizeElement = driver.findElement(By.id(boardSize.toString()));
+            boardSizeElement.clear();
+            boardSizeElement.sendKeys(
+                    Integer.toString(part.getBoards().get(boardSize))
+                    );
+        }
 
         driver.findElement(By.id("submitButton")).click();
     }
 
     private void compareCSVLine(String[] expected, String[] received) {
         assertTrue("Expected CSV line "
-                + expected.toString() + " "
+                +  StringUtils.join(expected).toString() + " "
                 + "does not match read line "
-                + received.toString() + ".",
+                +  StringUtils.join(received).toString() + ".",
                 Arrays.deepEquals(expected, received));
     }
 }

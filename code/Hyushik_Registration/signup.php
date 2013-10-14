@@ -27,7 +27,7 @@
   $cfg_array = parse_ini_file ("config.ini",0);
   if ($cfg_array['captcha_active'] == "true"){
 	require_once('recaptchalib.php');
-	$privatekey = "6LeVtugSAAAAAGZkVKqwg4v8Ii-ybsWKJLeInGBX";
+	$privatekey = $cfg_array['private_key'];
 	$resp = recaptcha_check_answer ($privatekey,
                                 $_SERVER["REMOTE_ADDR"],
                                 $_POST["recaptcha_challenge_field"],
@@ -46,13 +46,14 @@
 /* If reigstration file dones't exist, create it with comlumns */
 if(!file_exists('registration.csv')){
 	/* Check .ini file for board sizes columns */
-	$authFileName = "auth.ini";
+	$authFileName = "config.ini";
 	$ini_array = parse_ini_file($authFileName, true);
 	$size_array = $ini_array['BOARD_SIZES']['size'];
 
-	$list = array('name', 'email', 'address', 'city', 'state', 'zip', 'phone', 'gender', 'instructor', 'schoolname', 'schooladdress', 'schoolcity', 'schoolstate', 'schoolzip', 'schoolphone', 'schoolemail', 'rank', 'age', 'weight', 'weapons', 'breaking', 'forms', 'point', 'olympic' );
-	$result = array_merge($list, $size_array);
+	$list = array("Name", "Email", "Address", "City", "State", "Zip", "Phone", "Gender", "Instructor Name", "School Name", "School Address", "School City", "School State", "School Zip", "School Phone", "School Email", "Rank", "Age", "Weight", "Weapons", "Breaking", "Sparring (Point)", "Sparring (Olympic)");
+        $result = array_merge($list, $size_array);
 
+        
 	$fp = fopen('registration.csv', 'a');
 	fputcsv($fp, $result);
 	fclose($fp);
@@ -104,7 +105,11 @@ $fp = fopen('registration.csv', 'a');
 fputcsv($fp, $result);
 fclose($fp);
 
+<<<<<<< HEAD
 echo "You have successfully registered $name."
+=======
+echo "You have successfully registered for the Tournament!"
+>>>>>>> 6da1a06f7e23011e09469061a2b5305b8ac2e3a8
 
 ?>
 		</div>

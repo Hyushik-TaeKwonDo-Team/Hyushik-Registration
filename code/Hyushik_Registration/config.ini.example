@@ -1,0 +1,20 @@
+;
+; config file
+;
+
+[ADMIN_LOGIN]
+userName = "admin" ;please replace this
+password = "password" ; please replace this
+
+; Array's with an .ini file
+; http://us.php.net/manual/en/function.parse-ini-file.php#75983
+[BOARD_SIZES]
+size[0] = "1/4in"
+size[1] = "1/3in"
+size[2] = "1/2in"
+
+[captcha_settings]
+captcha_active = "false"
+;no quotes
+public_key = ;public key here, please add it
+private_key = ;private key here, please add it
