@@ -1,6 +1,27 @@
 <html>
-<body>
+<head>
 
+	<meta charset="utf-8">
+	<title>Tournament Registration</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link rel="stylesheet" href="css/skeleton.css">
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+	<div class="container">
+		<div class="sixteen columns">
+			<h1 class="remove-bottom" style="margin-top: 40px">Tioga Tae Kwon Do</h1>
+			<h5>Tournament Registration</h5>
+			<hr />
+		</div>
+		<div class="sixteen columns">
 <?php 
 
   $cfg_array = parse_ini_file ("config.ini",0);
@@ -83,15 +104,10 @@ $fp = fopen('registration.csv', 'a');
 fputcsv($fp, $result);
 fclose($fp);
 
-echo "You have successfully registered for Tournament!"
-
-/*
-echo "Name: $name <br>";
-echo "Email: $email <br>";
-echo "Weapons: $weapons";
-*/
+echo "You have successfully registered $name."
 
 ?>
-
+		</div>
+	</div>
 </body>
 </html>
