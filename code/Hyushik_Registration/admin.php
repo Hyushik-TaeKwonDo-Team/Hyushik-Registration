@@ -27,6 +27,16 @@ if (isset($_POST['delete'])){
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
+	<script>
+		 function validate(){
+			if (window.confirm('Are you sure that you want to delete the file?')){
+			    return true;
+			}
+			else{
+			    return false;
+			}
+		}
+	</script>
 </head>
 <body>
 <body>
@@ -46,7 +56,7 @@ if (isset($_POST['delete'])){
 		<div class="eight columns">
 			<p> 
 			Delete the registration data (THIS CAN NOT BE UNDONE)
-			<form action="admin.php" method="post">
+			<form action="admin.php" method="post" onsubmit="return validate();">
 				<button type="submit" value = "true" name="delete">DELETE Registration</button>
 			</form>
 			</p>
