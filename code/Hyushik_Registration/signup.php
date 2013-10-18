@@ -27,8 +27,8 @@
 
   $cfg_array = parse_ini_file ("config.ini",0);
   if ($cfg_array['captcha_active'] == "true"){
-	require_once('recaptchalib.php');
-	$privatekey = "6LeVtugSAAAAAGZkVKqwg4v8Ii-ybsWKJLeInGBX";
+	require_once('\lib\recaptcha\1_11\recaptchalib.php');
+	$privatekey = $cfg_array['private_key'];
 	$resp = recaptcha_check_answer ($privatekey,
                                 $_SERVER["REMOTE_ADDR"],
                                 $_POST["recaptcha_challenge_field"],
@@ -104,7 +104,7 @@ $fp = fopen('registration.csv', 'a');
 fputcsv($fp, $result);
 fclose($fp);
 
-echo "You have successfully registered $name."
+echo "You have successfully registered for the tournament, $name."
 
 ?>
 		</div>
