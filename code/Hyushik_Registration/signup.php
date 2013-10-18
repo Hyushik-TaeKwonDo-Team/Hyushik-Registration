@@ -36,8 +36,8 @@
 
 	if (!$resp->is_valid) {
     // What happens when the CAPTCHA was entered incorrectly
-		die ("The reCAPTCHA wasn't entered correctly. Go back and try it again." .
-         "(reCAPTCHA said: " . $resp->error . ")");
+		echo "<a href='http://localhost/HyushikRegistration'> The reCAPTCHA wasn't entered correctly. Click here to try again." . "(reCAPTCHA said: " . $resp->error . ")";
+		die ();
 	} else {
     // Your code here to handle a successful verification
 	}
