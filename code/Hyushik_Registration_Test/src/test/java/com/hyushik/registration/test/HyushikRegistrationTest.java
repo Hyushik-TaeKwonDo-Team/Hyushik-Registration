@@ -50,7 +50,7 @@ public class HyushikRegistrationTest {
     private String csvName;
     private String csvPath;
     private WebDriver driver;
-    private String[] csvHeaderLine = new String[]{"Name", "Email", "Address", "City", "State", "Zip", "Phone", "Gender", "Instructor Name", "School Name", "School Address", "School City", "School State", "School Zip", "School Phone", "School Email", "Rank", "Age", "Weight", "Weapons", "Breaking", "Sparring (Point)", "Sparring (Olympic)", "1/4in","1/3in","1/2in"};
+    private String[] csvHeaderLine = new String[]{"Name", "Email", "Address", "City", "State", "Zip", "Phone", "Gender", "Instructor Name", "School Name", "School Address", "School City", "School State", "School Zip", "School Phone", "School Email", "Rank", "Age", "Weight", "Weapons", "Breaking", "Forms", "Sparring (Point)", "Sparring (Olympic)", "1/4in","1/3in","1/2in"};
     private Participant part1 = new Participant("Test Participant",
             "test@test.com", "5 Nowhere Lane", "Bangor",
             "Maine", "12345", "555-555-5555", Participant.Gender.MALE,
