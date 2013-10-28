@@ -200,7 +200,7 @@
 					}else {
 						$use_ssl = false;
 					}
-					echo recaptcha_get_html($publickey, $use_ssl);
+					echo recaptcha_get_html($publickey, null, $use_ssl);
 				}
 		?>
 
