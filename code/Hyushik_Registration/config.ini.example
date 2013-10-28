@@ -15,6 +15,7 @@ size[2] = "1/2in"
 
 [captcha_settings]
 captcha_active = "false"
+use_ssl = "false"
 ;no quotes
 public_key = ;public key here, please add it
 private_key = ;private key here, please add it
