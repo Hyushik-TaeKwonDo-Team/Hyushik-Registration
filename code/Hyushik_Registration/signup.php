@@ -25,7 +25,7 @@
 		<div class="sixteen columns">
 <?php 
 
-  $cfg_array = parse_ini_file ("config.ini",0);
+  $cfg_array = parse_ini_file ("config/config.ini",0);
   if ($cfg_array['captcha_active'] == "true"){
 	require_once('\lib\recaptcha\1_11\recaptchalib.php');
 	$privatekey = $cfg_array['private_key'];
@@ -45,15 +45,15 @@
   
 
 /* If reigstration file dones't exist, create it with comlumns */
-if(!file_exists('registration.csv')){
+if(!file_exists('data/registration.csv')){
 	/* Check .ini file for board sizes columns */
-	$authFileName = "config.ini";
+	$authFileName = "config/config.ini";
 	$ini_array = parse_ini_file($authFileName, true);
 	$size_array = $ini_array['BOARD_SIZES']['size'];
 	$list = array("Name", "Email", "Address", "City", "State", "Zip", "Phone", "Gender", "Instructor Name", "School Name", "School Address", "School City", "School State", "School Zip", "School Phone", "School Email", "Rank", "Age", "Weight", "Weapons", "Breaking", "Forms", "Sparring (Point)", "Sparring (Olympic)");
 	$result = array_merge($list, $size_array);
 
-	$fp = fopen('registration.csv', 'a');
+	$fp = fopen('data/registration.csv', 'a');
 	fputcsv($fp, $result);
 	fclose($fp);
 }
@@ -100,7 +100,7 @@ $list = array($name, $email, $address, $city, $state, $zip, $phone, $gender, $in
 $result = array_merge($list, $boards);
 
 /* Open csv file and write to it */
-$fp = fopen('registration.csv', 'a');
+$fp = fopen('data/registration.csv', 'a');
 fputcsv($fp, $result);
 fclose($fp);
 

@@ -174,7 +174,7 @@
 
 			  <label>Number of Boards (optional)</label>
 			  <?php
-				$authFileName = "config.ini";
+				$authFileName = "config/config.ini";
 				$ini_array = parse_ini_file($authFileName, true);
 				$size_array = $ini_array['BOARD_SIZES']['size'];
 				echo "<ul>";
@@ -191,7 +191,7 @@
 		</div>
 		
 		<?php
-			$cfg_array = parse_ini_file ("config.ini",0);
+			$cfg_array = parse_ini_file ("config/config.ini",0);
 				if ($cfg_array['captcha_active'] == "true"){
 					require_once('lib/recaptcha/1_11/recaptchalib.php');
 					$publickey = $cfg_array['public_key'];

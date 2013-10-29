@@ -1,6 +1,6 @@
 <?php
 
-$authFileName = "config.ini";
+$authFileName = "config/config.ini";
 
 $ini_array = parse_ini_file($authFileName, true);
 

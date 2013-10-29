@@ -9,7 +9,7 @@ if(!session_is_registered(myusername)){
 
 
 if (isset($_POST['delete'])){
-	unlink("registration.csv");	
+	unlink("data/registration.csv");	
 }
 ?>
 
@@ -46,12 +46,16 @@ if (isset($_POST['delete'])){
 			<hr />
 		</div>
 		<div class="eight columns">
+		<?php if ( file_exists('data/registration.csv')):?>
 			<p> 
 			Download current tournament information
-			<form method="get" action="./registration.csv">
-			<button type="submit">Download Registration</button>
-			</form>
+			<a href="download.php?download_file=registration.csv">Download here</a>
 			</p>
+		<?php else: ?>
+			<p> 
+			There is no registration.csv right now, one will be created when the first participant registers.
+			</p>
+		<?php endif; ?>
 		</div>
 		<div class="eight columns">
 			<p> 
