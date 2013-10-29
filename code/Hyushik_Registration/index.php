@@ -195,7 +195,12 @@
 				if ($cfg_array['captcha_active'] == "true"){
 					require_once('lib/recaptcha/1_11/recaptchalib.php');
 					$publickey = $cfg_array['public_key'];
-					echo recaptcha_get_html($publickey);
+					if ($cfg_array['use_ssl'] == "true"){
+						$use_ssl = true;
+					}else {
+						$use_ssl = false;
+					}
+					echo recaptcha_get_html($publickey, null, $use_ssl);
 				}
 		?>
 
