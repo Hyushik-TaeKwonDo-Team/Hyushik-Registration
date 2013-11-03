@@ -14,10 +14,10 @@ thickness[1] = "1/3in"
 thickness[2] = "1/2in"
 
 [BOARD_WIDTH]
-board_width[0] = "4"
-board_width[1] = "6"
-board_width[2] = "8"
-board_width[3] = "10"
+board_width[0] = "4in"
+board_width[1] = "6in"
+board_width[2] = "8in"
+board_width[3] = "10in"
 
 [captcha_settings]
 captcha_active = "false"
