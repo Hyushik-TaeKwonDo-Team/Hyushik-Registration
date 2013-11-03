@@ -9,9 +9,9 @@ password = "password" ; please replace this
 ; Array's with an .ini file
 ; http://us.php.net/manual/en/function.parse-ini-file.php#75983
 [BOARD_THICKNESS]
-size[0] = "1/4in"
-size[1] = "1/3in"
-size[2] = "1/2in"
+thickness[0] = "1/4in"
+thickness[1] = "1/3in"
+thickness[2] = "1/2in"
 
 [BOARD_WIDTH]
 board_width[0] = "4"

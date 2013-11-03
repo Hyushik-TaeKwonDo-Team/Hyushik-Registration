@@ -181,8 +181,9 @@
 				echo "<ul>";
 				foreach ($width_array as $width_item) {
 					foreach ($thickness_array as $thickness_item) {
-						echo "<li><label style=\"font-size:12px\">$thickness_item x $width_item</label>\n";
-						echo "<input type=\"text\" class=\"xsmall lowbottom\" id=\"$thickness_item_$width_item\"name=\"boards[]\" value=\"0\" /></li>\n";
+						$combined_label = $thickness_item." x ".$width_item;
+						echo "<li><label style=\"font-size:12px\">$combined_label</label>\n";
+						echo "<input type=\"text\" class=\"xsmall lowbottom\" id=\"$combined_label\"name=\"boards[]\" value=\"0\" /></li>\n";
 					}
 				}
 				echo "</ul>";

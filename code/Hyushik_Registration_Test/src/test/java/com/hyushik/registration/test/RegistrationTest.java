@@ -32,30 +32,42 @@ import com.hyushik.registration.test.entities.Participant;
 @RunWith(JUnit4.class)
 public class RegistrationTest extends SeleniumTest {
 	
-	 private String[] csvHeaderLine = new String[]{"Name", "Email", "Address", "City", "State", "Zip", "Phone", "Gender", "Instructor Name", "School Name", "School Address", "School City", "School State", "School Zip", "School Phone", "School Email", "Rank", "Age", "Weight", "Weapons", "Breaking", "Forms", "Sparring (Point)", "Sparring (Olympic)", "1/4in","1/3in","1/2in"};
+	 private String[] csvHeaderLine = new String[]{"Name", "Email", "Address", "City", "State", "Zip", "Phone", "Gender", "Instructor Name", "School Name", "School Address", "School City", "School State", "School Zip", "School Phone", "School Email", "Rank", "Age", "Weight", "Weapons", "Breaking", "Forms", "Sparring (Point)", "Sparring (Olympic)", "1/4inx4in","1/3inx4in","1/2inx4in","1/4inx6in","1/3inx6in","1/2inx6in","1/4inx8in","1/3inx8in","1/2inx8in","1/4inx10in","1/3inx10in","1/2inx10in"};
 	    private Participant part1 = new Participant("Test Participant",
 	            "test@test.com", "5 Nowhere Lane", "Bangor",
 	            "Maine", "12345", "555-555-5555", Participant.Gender.MALE,
 	            "Test Instructor", "Test School", "6 Somewhere Lane", 
 	            "Olgunquit", "Maine", "666-666-6666", "65432",
 	            "dojo@test.com", Participant.Rank.WHITE, 23, 195, 
-	            buildParticipantBoardCounts(0, 0, 0));
+	            buildParticipantBoardCounts(0, 0, 0,0, 0, 0,0, 0, 0,0, 0, 0));
 	    private Participant part2 = new Participant("Test Participant 2",
 	            "test@test.org", "6 Nowhere Lane", "Bangoria",
 	            "Mainah", "54321", "555-555-5553", Participant.Gender.FEMALE,
 	            "Test Instructor 2", "Test School 2", "90 Somewhere Lane", 
 	            "Olgundontquit", "Mainah", "666-666-6663", "99999",
 	            "dojo@test.org", Participant.Rank.BROWN_RED, 30, 200,
-	            buildParticipantBoardCounts(5, 5, 5));
+	            buildParticipantBoardCounts(5, 5, 5,5, 5, 5,5, 5, 5,5, 5, 5));
 	    
-	    private Map<Participant.BoardSize, Integer> buildParticipantBoardCounts(int quarter, int third, int half){
+	    private Map<Participant.BoardSize, Integer> buildParticipantBoardCounts(int A, int B, int C,int D, int E, int F,int G, int H, int I,int J, int K, int L){
 	        Map<Participant.BoardSize, Integer> boards = 
 	                new EnumMap<Participant.BoardSize, Integer>(
 	                Participant.BoardSize.class
 	                );
-	        boards.put(Participant.BoardSize.QUARTER_INCH, quarter);
-	        boards.put(Participant.BoardSize.THIRD_INCH, third);
-	        boards.put(Participant.BoardSize.HALF_INCH, half);
+	        boards.put(Participant.BoardSize.QUARTER_INCH_BY_fOUR_INCH, A);
+	        boards.put(Participant.BoardSize.QUARTER_INCH_BY_SIX_INCH, B);
+	        boards.put(Participant.BoardSize.QUARTER_INCH_BY_EIGHT_INCH, C);
+	        boards.put(Participant.BoardSize.QUARTER_INCH_BY_TEN_INCH, D);
+	        
+	        boards.put(Participant.BoardSize.THIRD_INCH_BY_fOUR_INCH, E);
+	        boards.put(Participant.BoardSize.THIRD_INCH_BY_SIX_INCH, F);
+	        boards.put(Participant.BoardSize.THIRD_INCH_BY_EIGHT_INCH, G);
+	        boards.put(Participant.BoardSize.THIRD_INCH_BY_TEN_INCH, H);
+	        
+	        boards.put(Participant.BoardSize.HALF_INCH_BY_fOUR_INCH, I);
+	        boards.put(Participant.BoardSize.HALF_INCH_BY_SIX_INCH, J);
+	        boards.put(Participant.BoardSize.HALF_INCH_BY_EIGHT_INCH, K);
+	        boards.put(Participant.BoardSize.HALF_INCH_BY_TEN_INCH, L);
+	        
 	        return boards;
 	    }
 	    
@@ -117,7 +129,8 @@ public class RegistrationTest extends SeleniumTest {
 	            Logger.getLogger(RegistrationTest.class.getName()).log(Level.SEVERE, null, ex);
 	            fail(ex.getMessage());
 	        }
-
+	        
+	        
 	        validateHeaderInCSVFile(csvHeaderLine, results.get(0));
 	        for (int i = 1; i < results.size(); ++i) {
 	            validateParticipantInCSVFile(participants.get(i-1), results.get(i));

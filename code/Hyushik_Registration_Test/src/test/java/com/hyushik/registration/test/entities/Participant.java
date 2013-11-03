@@ -82,9 +82,20 @@ public class Participant {
         }
     }
     public static enum BoardSize {
-        QUARTER_INCH("1/4in"),
-        THIRD_INCH("1/3in"),
-        HALF_INCH("1/2in");
+    	QUARTER_INCH_BY_fOUR_INCH("1/4in x 4in"),
+    	QUARTER_INCH_BY_SIX_INCH("1/4in x 6in"),
+    	QUARTER_INCH_BY_EIGHT_INCH("1/4in x 8in"),
+    	QUARTER_INCH_BY_TEN_INCH("1/4in x 10in"),
+
+    	THIRD_INCH_BY_fOUR_INCH("1/3in x 4in"),
+    	THIRD_INCH_BY_SIX_INCH("1/3in x 6in"),
+    	THIRD_INCH_BY_EIGHT_INCH("1/3in x 8in"),
+    	THIRD_INCH_BY_TEN_INCH("1/3in x 10in"),
+    	
+    	HALF_INCH_BY_fOUR_INCH("1/2in x 4in"),
+    	HALF_INCH_BY_SIX_INCH("1/2in x 6in"),
+    	HALF_INCH_BY_EIGHT_INCH("1/2in x 8in"),
+    	HALF_INCH_BY_TEN_INCH("1/2in x 10in");
         
         
         private String text = ""; 
