@@ -176,11 +176,14 @@
 			  <?php
 				$authFileName = "config/config.ini";
 				$ini_array = parse_ini_file($authFileName, true);
-				$size_array = $ini_array['BOARD_SIZES']['size'];
+				$width_array = $ini_array['BOARD_WIDTH']['board_width'];
+				$thickness_array = $ini_array['BOARD_THICKNESS']['thickness'];
 				echo "<ul>";
-				foreach ($size_array as $size_item) {
-					echo "<li><label>$size_item</label>\n";
-					echo "<input type=\"text\" class=\"xsmall lowbottom\" id=\"$size_item\"name=\"boards[]\" value=\"0\" /></li>\n";
+				foreach ($width_array as $width_item) {
+					foreach ($thickness_array as $thickness_item) {
+						echo "<li><label style=\"font-size:12px\">$thickness_item x $width_item</label>\n";
+						echo "<input type=\"text\" class=\"xsmall lowbottom\" id=\"$thickness_item_$width_item\"name=\"boards[]\" value=\"0\" /></li>\n";
+					}
 				}
 				echo "</ul>";
 			  ?>
