@@ -49,9 +49,21 @@ if(!file_exists('data/registration.csv')){
 	/* Check .ini file for board sizes columns */
 	$authFileName = "config/config.ini";
 	$ini_array = parse_ini_file($authFileName, true);
-	$size_array = $ini_array['BOARD_SIZES']['size'];
+	$thickness_array = $ini_array['BOARD_THICKNESS']['thickness'];
+	$width_array = $ini_array['BOARD_WIDTH']['board_width'];
 	$list = array("Name", "Email", "Address", "City", "State", "Zip", "Phone", "Gender", "Instructor Name", "School Name", "School Address", "School City", "School State", "School Zip", "School Phone", "School Email", "Rank", "Age", "Weight", "Weapons", "Breaking", "Forms", "Sparring (Point)", "Sparring (Olympic)");
-	$result = array_merge($list, $size_array);
+	
+	if(thickness_array != null && $width_array != null){
+		$comb_array = array();
+		foreach($width_array as $width_item){
+			foreach($thickness_array as $thickness_item){
+				$temp_string = $thickness_item."x".$width_item;
+				$comb_array[] = $temp_string;
+			}
+		}
+		$result = array_merge($list, $comb_array);
+	}
+	
 
 	$fp = fopen('data/registration.csv', 'a');
 	fputcsv($fp, $result);
