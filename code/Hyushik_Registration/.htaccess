@@ -1,3 +1,0 @@
-<FilesMatch "\.(config|data)$">
-  Order deny
-</FilesMatch>
