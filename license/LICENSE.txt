@@ -1,7 +1,6 @@
 Copyright (c) 2013 Tioga Tae Kwon Do
 
-This software is licensed under the included MIT public license, with exceptions for the understated.
+This software is licensed under the included MIT public license, with exceptions for the following.
 
-Licensed under included Apache2 license terms:
-Selenium
-Recaptcha PHP Library
+Licensed under included MIT license terms:
+ReCaptcha
